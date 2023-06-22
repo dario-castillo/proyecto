@@ -55,7 +55,7 @@ ROOT_URLCONF = 'Proyecto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['AppDario/templates/AppDario/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

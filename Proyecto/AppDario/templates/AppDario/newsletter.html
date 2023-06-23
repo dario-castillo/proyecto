@@ -21,4 +21,12 @@
             <div class="bg-circle-3 bg-circle"></div>
             <div class="bg-circle-4 bg-circle"></div>
         </header>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <p> Nombre: <input type="text" name="nombre">
+            <p> Email: <input type="text" name="email">
+            <input type="submit" value="Enviar">    
+        </form>
+
 {% endblock main %}

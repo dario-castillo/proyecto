@@ -1,0 +1,20 @@
+{% extends 'AppDario/base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+    Lista
+{% endblock titulo %}
+
+
+{% block main %}
+
+{% for curso in cursos %}
+
+    <p>Curso: {{ curso.nombre }}</p>
+    <p>Duracion: {{ curso.duracion }}</p>
+
+{% endfor %}
+
+{% endblock main %}
+

@@ -1,7 +1,10 @@
 
 from django.urls import path
-from django.views.generic import TemplateView
+from AppDario import views
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('', views.saludo, name='inicio'),
+    path('tarifario/', views.tarifario, name='tarifario'),
+    path('newsletter/', views.newsletter, name='newsletter'),
 ]
+

@@ -9,10 +9,9 @@
 
 {% block main %}
 
-{% for curso in cursos %}
+{% for nombre in nombres %}
 
-    <p>Curso: {{ curso.nombre }}</p>
-    <p>Duracion: {{ curso.duracion }}</p>
+    <p>Nombre: {{ nombre.nombre }}</p>
 
 {% endfor %}
 

@@ -22,11 +22,9 @@
             <div class="bg-circle-4 bg-circle"></div>
         </header>
 
-        <form action="" method="POST">
+        <form action=''  method="POST">
             {% csrf_token %}
-            <table>
-                {{ miformulario.as_table }}
-            </table>
+            <p> Nombre: <input type= "text" name="nombre">
             <input type="submit" value="Buscar">    
         </form>
 

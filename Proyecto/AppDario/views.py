@@ -30,14 +30,16 @@ def newsletter(request):
     return render(request, "AppDario/newsletter.html")
 
 def buscar_curso(request):
-    if request.method == 'POST':
-        busca_curso = BuscaCursoForm(request.POST)
+    if request.method == "POST":
+        nombre = BuscaCursoForm(request.POST)
 
-        if busca_curso.is_valid():
-            info = busca_curso.cleaned_data
-            cursos = Cursos.objects.filter(nombre=info["curso"])
-            return render(request, "AppDario/lista.html", {"cursos": cursos})
+        if nombre.is_valid():
+            info = nombre.cleaned_data
+            nombre = Cursos.objects.filter(nombre=info['nombre'])
+            return render(request, "AppDario/lista.html", {'nombre': nombre})
     else:
-        busca_curso = BuscaCursoForm()
-        return render(request, "AppDario/buscar_curso.html", {"miFormulario": buscar_curso})
+        nombre = BuscaCursoForm()
+        return render(request, "AppDario/buscar_curso.html", {"nombre": nombre})
+     
     
+  

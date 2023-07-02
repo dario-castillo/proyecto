@@ -3,17 +3,16 @@
 {% load static %}
 
 {% block titulo %}
-    Tarifario
+    Registrarse 
 {% endblock titulo %}
-
 
 {% block main %}
         <!-- Header-->
         <header class="masthead text-center text-white">
             <div class="masthead-content">
                 <div class="container px-5">
-                    <h1 class="masthead-heading mb-0">Presupuesto!</h1>
-                    <h2 class="masthead-subheading mb-0">Consultame por precios por dibujos</h2>
+                    <h1 class="masthead-heading mb-0">Registrándote</h1>
+                    <h2 class="masthead-subheading mb-0">tenés acceso a más opciones</h2>
                     <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Leer más:</a>
                 </div>
             </div>
@@ -23,13 +22,9 @@
             <div class="bg-circle-4 bg-circle"></div>
         </header>
 
-    <form action="" method="post">
+    <form method="POST" class="m-2">
         {% csrf_token %}
-        <p> Nombre: <input type="text" name="nombre">
-        <p> Apellido: <input type="text" name="apellido">
-        <p> Email: <input type="text" name="email">
-        <input type="submit" value="Enviar">    
+        {{ miformulario.as_p }}
+        <input type="submit" value="Registrarse" class="btn btn-primary">
     </form>
-
 {% endblock main %}
-

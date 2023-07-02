@@ -27,8 +27,23 @@ def registro(request):
     return render(request, 'Cuentas/crear_cuenta.html', {'miformulario':form})        
 
 
-def login_request(request):
-    ...
+def loguearse(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            usuario = form.cleaned_data.get('username')
+            contraseña = form.cleaned_data.get('password')
+            user = authenticate(username=usuario, password=contraseña)
+            if user is not None:
+                django_login(request, user)
+                return redirect('inicio')
+            else:
+                return render(request, "Cuentas/iniciar_sesion.html", {"mensaje":"Datos incorrectos"})
+
+    form = AuthenticationForm()
+    return render(request, 'Cuentas/iniciar_sesion.html', {'formu_inicio':form})
+
+
 
 def editar_cuenta(request):
     ...

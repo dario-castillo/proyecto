@@ -44,12 +44,46 @@ def loguearse(request):
     return render(request, 'Cuentas/iniciar_sesion.html', {'formu_inicio':form})
 
 
+class Desloguearse(LogoutView):
+    template_name= 'Cuentas/desloguearse.html'
 
 def editar_cuenta(request):
-    ...
+    usuario = request.user
+    modelo_cuenta, _ =models.Cuenta.objetcts.get_or_create(user=usuario)
+    if request.method == 'POST':
+        form = forms.EditarUsuarioForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.cleaned_data
+            if data.get('email'):
+                usuario.email = data.get('email')
+            if data.get('first_name'):
+                usuario.first_name = data.get('first_name')
+            if data.get('last_name'):
+                usuario.last_name = data.get('last_name')
+            modelo_cuenta.avatar = data.get('avatar') if data.get('avatar') else modelo_cuenta.avatar
+
+            modelo_cuenta.save()
+            usuario.save()
+            return redirect('inicio')
+        else:
+            return render(request, "Cuentas/editar_cuenta.html", {"form":form})
+    
+    form = forms.EditarUsuarioForm(
+        initial={
+            'email':usuario.email,
+            'first_name': usuario.first_name,
+            'last_name': usuario.last_name,
+            'avatar': modelo_cuenta.last_name
+             }
+        )
+    return render(request, "Cuentas/editar_cuenta.html", {"form":form})
+
 
 def mostrar_cuenta(request):
-    ...
+    return render(request, 'Cuentas/mostrar_cuenta.html')
+
+
+
 def eliminar_cuenta(request):
     ...
 

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block titulo %}
-    Iniciar Sesión
+    Salir
 {% endblock titulo %}
 
 {% block main %}
@@ -10,8 +10,8 @@
 <header class="masthead text-center text-white">
     <div class="masthead-content">
         <div class="container px-5">
-            <h1 class="masthead-heading mb-0">Iniciar sesión!</h1>
-            <h2 class="masthead-subheading mb-0">Bienvenido!</h2>
+            <h1 class="masthead-heading mb-0">Saliendo!</h1>
+            <h2 class="masthead-subheading mb-0">Hasta pronto!</h2>
             <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Leer más:</a>
         </div>
     </div>
@@ -21,9 +21,11 @@
     <div class="bg-circle-4 bg-circle"></div>
 </header>
 
-    <form method="POST" class="m-2">
-        {% csrf_token %}
-        {{ formu_inicio.as_p }}
-        <input type="submit" value="Iniciar sesión" class="btn btn-primary">
-    </form>
+    <div class="row">
+        <div class="card m-2" style="width: 20rem;" >
+            <div class="card-body">
+                <h5 class="card-title"> Te deslogueaste con exito!</h5>
+            </div>
+        </div>
+    </div>
 {% endblock main %}

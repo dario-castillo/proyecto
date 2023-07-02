@@ -14,6 +14,9 @@ def saludo(request):
 def about(request):
     return render(request, "AppDario/about.html")
 
+def bocetos(request):
+    return render(request, "AppDario/bocetos.html")
+
 
 def tarifario(request):
     

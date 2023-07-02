@@ -9,6 +9,8 @@ urlpatterns = [
     path('newsletter/', views.newsletter, name='newsletter'),
     path('buscarcurso/', views.buscar_curso, name='buscarcurso'),
     path('about/', views.about, name= 'acercademi'),
+    path('bocetos/', views.bocetos, name= 'bocetos'),
+
          
 ]
 

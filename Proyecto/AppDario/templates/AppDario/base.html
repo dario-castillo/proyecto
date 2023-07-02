@@ -26,13 +26,14 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'acercademi' %}">Acerca de mi</a></li>
                         {% if request.user.is_authenticated %}
                             <li class="nav-item"><a class="nav-link" href="{% url 'buscarcurso' %}">Buscar Curso</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'newsletter' %}">Newsletter</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'tarifario' %}">Tarifario</a></li>
                             <a class="navbar-brand" href="{% url 'salir' %}">Salir</a>
                             {% else %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'iniciar_sesion' %}">Iniciar Sesion</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'iniciarsesion' %}">Iniciar Sesion</a></li>
                             <li class="nav-item"><a class="nav-link" href="{% url 'registro' %}">Registrarse</a></li>
                         {% endif %}
                     </ul>

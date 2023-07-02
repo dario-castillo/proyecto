@@ -20,7 +20,7 @@ def registro(request):
         form = forms.RegistroUsuarioForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('iniciarsesion')
         else:
             return render(request, 'Cuentas/crear_cuenta.html', {'miformulario':form})
     form = forms.RegistroUsuarioForm()

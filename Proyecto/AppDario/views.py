@@ -10,7 +10,11 @@ def saludo(request):
    # return HttpResponse("Hola Darío")
 
     return render(request, "AppDario/index.html")
- 
+
+def about(request):
+    return render(request, "AppDario/about.html")
+
+
 def tarifario(request):
     
     if request.method == 'POST':
@@ -39,7 +43,7 @@ def buscar_curso(request):
             return render(request, "AppDario/lista.html", {'nombre': nombre})
     else:
         nombre = BuscaCursoForm()
-        return render(request, "AppDario/buscar_curso.html", {"nombre": nombre})
+        return render(request, "AppDario/buscar_curso.html", {'nombre': nombre})
      
     
   

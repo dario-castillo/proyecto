@@ -1,0 +1,30 @@
+{% extends 'AppDario/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Borrar pedido
+{% endblock title %}
+
+{% block main %}
+<!-- Header-->
+<header class="masthead text-center text-white">
+    <div class="masthead-content">
+        <div class="container px-5">
+            <h1 class="masthead-heading mb-0">Borrar!</h1>
+            <h2 class="masthead-subheading mb-0">Elimina tu pedido</h2>
+        </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+</header>
+
+    <form action="{% url 'eliminarpedido' object.id %}" method="POST" class="m-2">
+        {% csrf_token %}
+        <p>Desea eliminar el pedido?</p>
+        <input type="submit" value="Confirmar" class="btn btn-primary">
+        <a href="{% url 'pedido' %}" class="btn btn-primary">Cancelar</a>
+    </form>
+{% endblock main %}

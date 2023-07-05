@@ -10,9 +10,14 @@ from django.views.generic import DeleteView
 
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.views.generic import DetailView
+from django.views.generic.edit import DeleteView, UpdateView, CreateView
+from django.views.generic.list import ListView
 
 from Cuentas import forms
 from Cuentas import models
+from Cuentas.models import Cuenta
+from Cuentas.models import Pedido
 # Create your views here.
 
 def registro(request):
@@ -78,10 +83,43 @@ def editar_cuenta(request):
         )
     return render(request, "Cuentas/editar_cuenta.html", {"form":form})
 
+#class MiCuenta(ListView):
+    model = Cuenta
+    template_name = 'Cuentas/crud_cuenta.html'
 
-def mostrar_cuenta(request):
-    return render(request, 'Cuentas/mostrar_cuenta.html')
 
+
+#class VerCuenta(DetailView):
+    model = Cuenta
+    template_name = 'Cuentas/ver_cuenta.html'
+
+class ListadoPedidos(ListView):
+    model = Pedido
+    template_name = 'Cuentas/crud_pedidos.html'
+
+class CrearPedido(CreateView):
+    model = Pedido
+    template_name = 'Cuentas/crear_pedido.html'
+    success_url = reverse_lazy('pedido')
+    fields = '__all__'
+
+
+class MostrarPedido(DetailView):
+    model = Pedido
+    template_name = 'Cuentas/mostrar_pedidos.html'
+
+class EditarPedido(UpdateView):
+    model = Pedido
+    template_name = 'Cuentas/editar_pedidos.html'
+    fields = '__all__'
+
+    def get_success_url(self) -> str:
+        return reverse_lazy('mostrarpedido', kwargs={'pk':self.object.pk})
+    
+class EliminarPedido(DeleteView):
+    model = Pedido
+    template_name = 'Cuentas/eliminar_pedido.html'
+    success_url = reverse_lazy('pedido')
 
 
 def eliminar_cuenta(request):

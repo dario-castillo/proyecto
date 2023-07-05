@@ -1,0 +1,49 @@
+{% extends 'AppDario/base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Pedidos
+{% endblock titulo %}
+
+{% block main %}
+        <!-- Header-->
+        <header class="masthead text-center text-white">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-0">Pedido de dibujos!</h1>
+                    <h2 class="masthead-subheading mb-0">¿Qué te gustaría ver en mi página?</h2>
+                </div>
+            </div>
+            <div class="bg-circle-1 bg-circle"></div>
+            <div class="bg-circle-2 bg-circle"></div>
+            <div class="bg-circle-3 bg-circle"></div>
+            <div class="bg-circle-4 bg-circle"></div>
+        </header>
+
+        <div>
+            <a href="{% url 'crearpedido' %}" class="m-2 btn btn-primary">Crear pedido</a>
+        </div>
+
+    {% if object_list %}
+        <div class="row">
+            {% for pedido in object_list %}
+                <div class="card m-2" style="width: 18rem;" >
+                    <div class="card-body">
+                    <h5 class="card-title">{{ pedido.personaje }}</h5>
+                    
+                    <a href="{% url 'mostrarpedido' pedido.id %}" class="btn btn-primary">Ver</a>
+                    <a href="{% url 'editarpedido' pedido.id %}" class="btn btn-primary">Editar</a>
+                    <a href="{% url 'eliminarpedido' pedido.id %}" class="btn btn-primary">Borrar</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="card" style="width: 18rem;" >
+            <div class="card-body">
+                <p class="card-text">No se encontraron datos.</p>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock main %}

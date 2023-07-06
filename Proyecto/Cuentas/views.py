@@ -8,7 +8,7 @@ from django.contrib.auth.views import PasswordChangeView, LogoutView
 
 from django.views.generic import DeleteView
 
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
@@ -49,12 +49,14 @@ def loguearse(request):
     return render(request, 'Cuentas/iniciar_sesion.html', {'formu_inicio':form})
 
 
-class Desloguearse(LogoutView):
+class Desloguearse(LoginRequiredMixin, LogoutView):
     template_name= 'Cuentas/desloguearse.html'
 
+
+@login_required
 def editar_cuenta(request):
     usuario = request.user
-    modelo_cuenta, _ =models.Cuenta.objetcts.get_or_create(user=usuario)
+    modelo_cuenta, _ =models.Cuenta.objects.get_or_create(user=usuario)
     if request.method == 'POST':
         form = forms.EditarUsuarioForm(request.POST, request.FILES)
         if form.is_valid():
@@ -69,7 +71,7 @@ def editar_cuenta(request):
 
             modelo_cuenta.save()
             usuario.save()
-            return redirect('inicio')
+            return redirect('vercuenta')
         else:
             return render(request, "Cuentas/editar_cuenta.html", {"form":form})
     
@@ -84,9 +86,19 @@ def editar_cuenta(request):
     return render(request, "Cuentas/editar_cuenta.html", {"form":form})
 
 
-
+@login_required
 def ver_cuenta(request):
     return render(request,'Cuentas/ver_cuenta.html')
+
+class CambiarContraseña(LoginRequiredMixin, PasswordChangeView):
+    template_name = 'Cuentas/cambiar_contraseña.html'
+    success_url = reverse_lazy("vercuenta")
+
+class EliminarCuenta(LoginRequiredMixin, DeleteView):
+    model = User
+    success_url = reverse_lazy("inicio")
+    template_name = 'Cuentas/eliminar_cuenta.html'
+
 
 
 class ListadoPedidos(ListView):
@@ -116,12 +128,3 @@ class EliminarPedido(DeleteView):
     model = Pedido
     template_name = 'Cuentas/eliminar_pedido.html'
     success_url = reverse_lazy('pedido')
-
-
-def eliminar_cuenta(request):
-    ...
-
-def cambiar_password(request):
-    ...
-
-

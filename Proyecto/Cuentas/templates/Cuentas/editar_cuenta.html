@@ -2,12 +2,31 @@
 
 {% load static %}
 
-{% block titulo %} Editar Cuenta {% endblock titulo %}
+{% block titulo %} 
+    Editar Cuenta
+{% endblock titulo %}
 
 {% block main %}
+<!-- Header-->
+<header class="masthead text-center text-white">
+    <div class="masthead-content">
+        <div class="container px-5">
+            <h1 class="masthead-heading mb-0">Edita tu cuenta</h1>
+        </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+</header>
+
     <form method="POST" class="m-2" enctype='multipart/form-data'>
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Editar" class="btn btn-primary">
+        <input type="submit" value="Confirmar cambios" class="btn btn-primary">
     </form>
+    <div>
+        <a href="{% url 'cambiarcontraseña' %}" class="m-2 btn btn-primary">Cambia tu contraseña</a>
+    </div>
+
 {% endblock main %}

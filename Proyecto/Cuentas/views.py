@@ -78,20 +78,16 @@ def editar_cuenta(request):
             'email':usuario.email,
             'first_name': usuario.first_name,
             'last_name': usuario.last_name,
-            'avatar': modelo_cuenta.last_name
+            'avatar': modelo_cuenta.avatar
              }
         )
     return render(request, "Cuentas/editar_cuenta.html", {"form":form})
 
-#class MiCuenta(ListView):
-    model = Cuenta
-    template_name = 'Cuentas/crud_cuenta.html'
 
 
+def ver_cuenta(request):
+    return render(request,'Cuentas/ver_cuenta.html')
 
-#class VerCuenta(DetailView):
-    model = Cuenta
-    template_name = 'Cuentas/ver_cuenta.html'
 
 class ListadoPedidos(ListView):
     model = Pedido

@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'AppDario/base.html' %}
 
 {% load static %}
 
 {% block titulo %} Eliminar Cuenta {% endblock titulo %}
 
 {% block main %}
-    <form action="{% url 'eliminar_cuenta' object.id %}" method="POST" class="m-2">
+    <form action="{% url 'eliminarcuenta' object.id %}" method="POST" class="m-2">
         {% csrf_token %}
         <p>Querés eliminar tu cuenta?</p>
         <input type="submit" value="Confirmar" class="btn btn-primary">

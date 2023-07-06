@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .models import Tarifario
 from .models import Newsletters
 from .models import Cursos
-from .forms import BuscaCursoForm
+#from .forms import BuscaCursoForm
 
 
 def saludo(request):
@@ -36,7 +36,7 @@ def newsletter(request):
 
     return render(request, "AppDario/newsletter.html")
 
-def buscar_curso(request):
+#def buscar_curso(request):
     if request.method == "POST":
         nombre = BuscaCursoForm(request.POST)
 
